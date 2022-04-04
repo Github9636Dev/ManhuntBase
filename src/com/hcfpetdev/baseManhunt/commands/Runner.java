@@ -131,7 +131,7 @@ public class Runner {
 
                     for (Player p : Main.getOnlineRunners()) runners.append(p.getName()).append("&b, ");
 
-                    if (runners.length() < 2) runners.append("No runners");
+                    if (runners.length() < 2) runners.append("No runners  ");
 
                     Message.sendPlayerMessage(sender, "&aRunners: &e" +
                             runners.substring(0,runners.length()-2));

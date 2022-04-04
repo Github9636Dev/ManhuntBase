@@ -126,7 +126,7 @@ public class Hunter {
 
                     for (Player p : Main.getOnlineHunters()) hunters.append(p.getName()).append("&b, ");
 
-                    if (hunters.length() < 2) hunters.append("No hunters");
+                    if (hunters.length() < 2) hunters.append("No hunters  ");
 
                     Message.sendPlayerMessage(sender, "&aHunters: &e" +
                             hunters.substring(0,hunters.length()-2));
