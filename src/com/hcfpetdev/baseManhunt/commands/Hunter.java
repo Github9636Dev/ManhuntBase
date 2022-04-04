@@ -62,8 +62,18 @@ public class Hunter {
                         return true;
                     }
 
+                    if (Main.onlineHuntersContains(player)) {
+                        Message.sendPlayerError(sender,
+                                "You are already a hunter");
+                        return true;
+                    }
+
                     Main.addHunter(player.getName());
                     Main.addOnlineHunter(player, true);
+
+                    instance.getConfig().set("values.hunters", Main.getHunters());
+
+                    instance.saveConfig();
                 }
 
                 else if (args[0].equalsIgnoreCase("leave")) {
@@ -73,10 +83,15 @@ public class Hunter {
 
                     if (!Main.onlineHuntersContains(player)) {
                         Message.sendPlayerError(player, "you are not part of the 'Hunters' team");
+                        return true;
                     }
 
                     Main.removeHunter(player.getName());
                     Main.removeOnlineHunter(player,true);
+
+                    instance.getConfig().set("values.hunters", Main.getHunters());
+
+                    instance.saveConfig();
                 }
 
                 else if (args[0].equalsIgnoreCase("add")) {
@@ -98,8 +113,18 @@ public class Hunter {
                             return true;
                         }
 
+                        if (Main.onlineHuntersContains(player)) {
+                            Message.sendPlayerError(sender, player.getName() +
+                                    " is already a hunter");
+                            return true;
+                        }
+
                         Main.addHunter(player.getName());
                         Main.addOnlineHunter(player, true);
+
+                        instance.getConfig().set("values.hunters", Main.getHunters());
+
+                        instance.saveConfig();
                     }
                 }
 
@@ -115,9 +140,14 @@ public class Hunter {
                     else {
                         if (!Main.onlineHuntersContains(player)) {
                             Message.sendPlayerError(sender, player.getName() + " is not part of the 'Hunters' team");
+                            return true;
                         }
                         Main.removeHunter(player.getName());
                         Main.removeOnlineHunter(player, true);
+
+                        instance.getConfig().set("values.hunters", Main.getHunters());
+
+                        instance.saveConfig();
                     }
                 }
 
@@ -136,9 +166,10 @@ public class Hunter {
                     Main.clearHunters();
                     Main.clearOnlineHunters();
 
-                    Message.broadcast("&c" + sender.getName() + " has &l&ncleared &r&call hunters");
+                    Message.broadcast("&c" + sender.getName() + " has &l&ncleared&r&c all hunters");
                 }
 
+                instance.saveConfig();
                 return true;
             }
 

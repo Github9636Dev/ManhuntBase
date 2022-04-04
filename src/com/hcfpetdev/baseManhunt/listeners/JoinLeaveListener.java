@@ -38,11 +38,15 @@ public class JoinLeaveListener implements Listener {
         if (defaultTeam == 1) Main.addOnlineRunner(player, false);
         if (defaultTeam == 2) Main.addOnlineHunter(player, false);
 
-        if (runners.contains(player.getName())) Main.addOnlineRunner(player, false);
-        else if (hunters.contains(player.getName())) Main.addOnlineHunter(player, false);
-
         if (defaultRunner.equals(player.getName())) Main.addOnlineRunner(player,false);
         else if (defaultHunter.equals(player.getName())) Main.addOnlineHunter(player, false);
+
+        if (runners.contains(player.getName())) Main.addOnlineRunner(player, false);
+        else if (hunters.contains(player.getName())) Main.addOnlineHunter(player, false);
+        else if (saveOnReload) {
+            if (Main.onlineRunnerContains(player)) Main.addRunner(player.getName());
+            if (Main.onlineHuntersContains(player)) Main.addHunter(player.getName());
+        }
 
         if (Main.onlineRunnerContains(player)) {
             Message.sendPlayerMessage(player,  Message.format(messageToPlayer, "Runners"));
@@ -57,6 +61,9 @@ public class JoinLeaveListener implements Listener {
             if (broadcast) Message.broadcast(
                     Message.format(messageBroadcasted, player.getName(), "Hunters"));
         }
+
+        Main.updateConfig();
+
     }
 
     @EventHandler

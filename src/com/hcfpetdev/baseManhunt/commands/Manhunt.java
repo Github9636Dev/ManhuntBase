@@ -72,6 +72,8 @@ public class Manhunt {
                         return false;
                 }
 
+                instance.saveConfig();
+
                 return true;
             }
 

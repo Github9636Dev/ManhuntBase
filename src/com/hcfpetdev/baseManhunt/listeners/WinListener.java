@@ -20,7 +20,7 @@ public class WinListener implements Listener {
         Player player = event.getEntity();
 
         if (Main.allowMultipleRunners() && Main.requireAllRunnersToDie()) {
-            Main.removeOnlineHunter(player, true);
+            Main.removeOnlineRunner(player, true);
             Message.broadcast("&eThere are " + Main.getOnlineRunners().size() + " runners left");
 
             if (!Main.getOnlineRunners().isEmpty()) return;
@@ -32,9 +32,6 @@ public class WinListener implements Listener {
 
     @EventHandler
     private void onEnderDragonDeath(EntityDeathEvent event) {
-
-        System.out.println(event.getEntity().getType().name());
-
         if (!Main.manhuntInProgress()) return;
         if (event.getEntity().getType() != EntityType.ENDER_DRAGON) return;
 

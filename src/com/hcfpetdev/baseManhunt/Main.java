@@ -14,6 +14,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main extends JavaPlugin {
@@ -28,6 +29,8 @@ public class Main extends JavaPlugin {
 
     private static long startTime;
 
+    private static FileConfiguration config;
+
     @Override
     public void onEnable() {
         super.onEnable();
@@ -38,7 +41,9 @@ public class Main extends JavaPlugin {
         manhuntInProgress = false;
 
         PluginManager pluginManager = Bukkit.getPluginManager();
-        FileConfiguration config = getConfig();
+        config = getConfig();
+
+        getConfig().options().copyDefaults(true);
 
         if (!new File(config.getCurrentPath()).exists()) saveDefaultConfig();
 
@@ -131,6 +136,8 @@ public class Main extends JavaPlugin {
     }
 
     public static void addOnlineRunner(Player player, boolean showMessage) {
+        if (onlineRunners.contains(player)) return;
+
         onlineRunners.add(player);
 
         onlineHunters.remove(player);
@@ -144,6 +151,8 @@ public class Main extends JavaPlugin {
     }
 
     public static void addOnlineHunter(Player player, boolean showMessage) {
+        if (onlineHunters.contains(player)) return;
+
         onlineHunters.add(player);
 
         onlineRunners.remove(player);
@@ -157,6 +166,7 @@ public class Main extends JavaPlugin {
     }
 
     public static void removeOnlineRunner(Player player, boolean showMessage) {
+
         onlineRunners.remove(player);
 
         if (!showMessage) return;
@@ -195,11 +205,14 @@ public class Main extends JavaPlugin {
     }
 
     public static void addRunner(String name) {
-        runners.add(name);
+        if (!runners.contains(name))
+            runners.add(name);
+
     }
 
     public static void addHunter(String name) {
-        hunters.add(name);
+        if (!hunters.contains(name))
+            hunters.add(name);
     }
 
     public static void removeRunner(String name) {
@@ -283,5 +296,20 @@ public class Main extends JavaPlugin {
 
     public static boolean allowMultipleRunners() {
         return allowMultipleRunners;
+    }
+
+    public static List<String> getRunners() {
+        return runners;
+    }
+
+    public static List<String> getHunters() {
+        return hunters;
+    }
+
+    public static void updateConfig() {
+
+
+        config.set("values.runners", runners);
+        config.set("values.hunters", hunters);
     }
 }

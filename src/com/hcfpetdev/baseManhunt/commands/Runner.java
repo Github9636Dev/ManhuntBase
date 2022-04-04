@@ -67,8 +67,16 @@ public class Runner {
                         return true;
                     }
 
+                    if (Main.onlineRunnerContains(player)) {
+                        Message.sendPlayerError(sender,
+                                "You are already a runner");
+                        return true;
+                    }
+
                     Main.addRunner(player.getName());
                     Main.addOnlineRunner(player, true);
+
+                    Main.updateConfig();
                 }
 
                 else if (args[0].equalsIgnoreCase("leave")) {
@@ -78,10 +86,13 @@ public class Runner {
 
                     if (!Main.onlineRunnerContains(player)) {
                         Message.sendPlayerError(player, "you are not part of the 'Runners' team");
+                        return true;
                     }
 
                     Main.removeRunner(player.getName());
                     Main.removeOnlineRunner(player,true);
+
+                    Main.updateConfig();
                 }
 
                 else if (args[0].equalsIgnoreCase("add")) {
@@ -103,8 +114,16 @@ public class Runner {
                             return true;
                         }
 
+                        if (Main.onlineRunnerContains(player)) {
+                            Message.sendPlayerError(sender, player.getName() +
+                                    "is already a runner");
+                            return true;
+                        }
+
                         Main.addRunner(player.getName());
                         Main.addOnlineRunner(player, true);
+
+                        Main.updateConfig();
                     }
                 }
 
@@ -120,9 +139,13 @@ public class Runner {
                     else {
                         if (!Main.onlineRunnerContains(player)) {
                             Message.sendPlayerError(sender, player.getName() + " is not part of the 'Runners' team");
+                            return true;
                         }
+
                         Main.removeRunner(player.getName());
                         Main.removeOnlineRunner(player, true);
+
+                        Main.updateConfig();
                     }
                 }
 
@@ -141,8 +164,10 @@ public class Runner {
                     Main.clearRunners();
                     Main.clearOnlineRunners();
 
-                    Message.broadcast("&c" + sender.getName() + " has &l&ncleared &r&call runners");
+                    Message.broadcast("&c" + sender.getName() + " has &l&ncleared&r &call runners");
                 }
+
+                instance.saveConfig();
 
                 return true;
             }
