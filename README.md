@@ -10,6 +10,7 @@
 - Automatic win / lose detection
 - Custom messages for team join
 - Changeable commands in config.yml
+- Support for adding twists
 
 ## Ingame Commands:
 
