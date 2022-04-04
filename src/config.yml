@@ -29,3 +29,5 @@ require-all-runners-to-die: true #If all runners are required to die to end a mu
 values:
   runners: [9636]
   hunters: []
+
+  inprogress: false

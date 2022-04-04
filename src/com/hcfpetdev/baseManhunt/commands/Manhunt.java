@@ -129,6 +129,9 @@ public class Manhunt {
         Main.setManhuntInProgress(true);
 
         for (Player p : Main.getOnlineHunters()) p.getInventory().addItem(CompassListener.trackerCompass);
+
+        instance.getConfig().set("values.inprogress", true);
+        instance.saveConfig();
     }
 
     private void stop(CommandSender sender) {
@@ -144,7 +147,10 @@ public class Manhunt {
 
         Main.setManhuntInProgress(false);
 
-//        for (Player p : Main.getOnlineHunters()) p.getInventory().remove(CompassListener.trackerCompass);
+        for (Player p : Main.getOnlineHunters()) p.getInventory().remove(CompassListener.trackerCompass);
+
+        instance.getConfig().set("values.inprogress", false);
+        instance.saveConfig();
     }
 
     private void reset(CommandSender sender) {

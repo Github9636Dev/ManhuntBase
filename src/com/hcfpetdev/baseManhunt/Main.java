@@ -88,6 +88,7 @@ public class Main extends JavaPlugin {
         config.set("values.runners", runners);
         config.set("values.hunters", hunters);
 
+        saveConfig();
     }
 
     private void loadConfig() {
