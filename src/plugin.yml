@@ -1,0 +1,13 @@
+name: Manhunt
+version: 1
+main: com.hcfpetdev.baseManhunt.Main
+author: 9636Dev
+authors:
+  - 9636Dev
+  - hcfpetdev
+website: github.com/9636Dev
+
+description: >
+  A base manhunt plugin that many of my other plugins require.
+
+api-version: 1.18

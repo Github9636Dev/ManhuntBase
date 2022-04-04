@@ -1,0 +1,31 @@
+command-aliases:
+  runner: ["/runner","/r"]
+  hunter: ["/hunter","/h"]
+
+  manhunt: ["manhunt","/mh"]
+
+defaults:
+  runner: "" #Values: "", player name, all
+  hunter: all
+
+command-permissions:
+  require-op: true #values: true / false
+
+message:
+  broadcast-join-team: true #Broadcast to all players when a player joins team
+  broadcast-winning-team: true #Broadcasts the team that won
+
+  broadcast-message-join: "&a%s has joined %s" #%s and %s for playername and team name
+  broadcast-message-remove: "&c%s has been removed from %s"  #%s and %s for playername and team name
+  message-to-joined-player: "&aYou have joined %s " #Use %s for team name
+  message-to-removed-player: "&cYou have been removed from %s" #Use %s for team name
+  message-on-win: "§aThe %s has won!" #Use %s for team name
+
+save-on-reload: true #Save hunters and runners on plugin reload
+
+allow-multiple-runners: true #If more than one runner is allowed
+require-all-runners-to-die: true #If all runners are required to die to end a multiple runner game
+
+values:
+  runners: [9636]
+  hunters: []
