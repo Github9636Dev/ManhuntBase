@@ -99,6 +99,8 @@ public class Main extends JavaPlugin {
         runners = config.getStringList("values.runners");
         hunters = config.getStringList("values.hunters");
 
+        allowMultipleRunners = config.getBoolean("allow-multiple-runners");
+
         if (runners.size() > 1 && !allowMultipleRunners) {
             getLogger().info("allow-multiple-runners is set to true because there are more than 1 runner saved");
             allowMultipleRunners = true;
